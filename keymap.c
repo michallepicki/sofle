@@ -3,8 +3,8 @@
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
-    _RAISE,
-    _LOWER,
+    _MOD,
+    _FN,
     _ADJUST,
 };
 
@@ -28,9 +28,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | ESC  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT |Enter | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -43,12 +43,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
 
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,     XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,     XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
 
-               KC_LGUI, KC_LALT, KC_LCTL,   MO(_LOWER), KC_ENT,      KC_SPC,    MO(_RAISE), KC_RCTL, KC_RALT, KC_RGUI
+               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    KC_SPC,      MO(_MOD),   KC_RALT,   KC_ENT,  KC_RGUI, KC_RCTL
 ),
 
-/* RAISE
+/* MOD
  * ,----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -56,13 +56,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del |      |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      | Shift|
+ * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT |Enter | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_RAISE] = LAYOUT(
+[_MOD] = LAYOUT(
 
   _______, _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______,
 
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                _______, _______, _______,   _______,    _______,     _______,    _______,   _______, _______, _______
 ),
 
-/* LOWER
+/* FN
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -83,13 +83,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-   --+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * | Shift|  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  | Shift|
+ * | Shift|  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT |Enter | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
-[_LOWER] = LAYOUT(
+[_FN] = LAYOUT(
 
   _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 
@@ -110,9 +110,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |MACWIN|      |      |      |-------.    ,-------|      | VOLDO| MUTE | VOLUP|      |      |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------|    |-------|      | PREV | PLAY | NEXT |      |      |
+ * |      |      |      |      |      |      |-------|    |-------|      | PREV | PLAY | NEXT |      |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LGUI | LAlt | LCTR |LOWER | /Enter  /       \Space \  |RAISE | RCTR | RAlt | RGUI |
+ *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT |Enter | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `----------------------------------'           '------''---------------------------'
  */
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   XXXXXXX, XXXXXXX, CG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX,
 
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______,
 
                _______, _______, _______,   _______,    _______,     _______,    _______,   _______, _______, _______
 )
@@ -145,44 +145,48 @@ static void render_logo(void) {
 
 static void print_status_narrow(void) {
     // Print current mode
-    oled_write_P(PSTR("\n\n"), false);
-    oled_write_ln_P(PSTR("MODE"), false);
-    oled_write_ln_P(PSTR(""), false);
     if (keymap_config.swap_lctl_lgui) {
         oled_write_ln_P(PSTR("MAC"), false);
     } else {
         oled_write_ln_P(PSTR("WIN"), false);
     }
 
+    oled_write_P(PSTR("\n\n"), false);
+
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
-            oled_write_ln_P(PSTR("Qwrt"), false);
+            oled_write_ln_P(PSTR("QWRT"), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
     }
+
     oled_write_P(PSTR("\n\n"), false);
+
     // Print current layer
-    oled_write_ln_P(PSTR("LAYER"), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("Base\n"), false);
+            oled_write_P(PSTR("Base"), false);
             break;
-        case _RAISE:
-            oled_write_P(PSTR("Raise"), false);
+        case _MOD:
+            oled_write_P(PSTR("Mod"), false);
             break;
-        case _LOWER:
-            oled_write_P(PSTR("Lower"), false);
+        case _FN:
+            oled_write_P(PSTR("Fn"), false);
             break;
         case _ADJUST:
-            oled_write_P(PSTR("Adj\n"), false);
+            oled_write_P(PSTR("Adj"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
+
     oled_write_P(PSTR("\n\n"), false);
+
     led_t led_usb_state = host_keyboard_led_state();
-    oled_write_ln_P(PSTR("CPSLK"), led_usb_state.caps_lock);
+    if (led_usb_state.caps_lock) {
+      oled_write_ln_P(PSTR("CPSLK"), true);
+    }
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -204,7 +208,7 @@ bool oled_task_user(void) {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    return update_tri_layer_state(state, _MOD, _FN, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
