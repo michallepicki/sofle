@@ -93,7 +93,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_EQL,  KC_MINS, KC_PLUS, KC_LCBR, KC_RCBR, _______,     _______, KC_LBRC, KC_RBRC, KC_SCLN, KC_COLN, KC_BSLS, _______,
 
                _______, _______, _______,   _______,    _______,     _______,    _______,   _______, _______, _______
-),
+)
+};
 
 #ifdef OLED_ENABLE
 
@@ -129,9 +130,6 @@ static void print_status_narrow(void) {
         case _FN:
             oled_write_P(PSTR("Fn"), false);
             break;
-        case _ADJUST:
-            oled_write_P(PSTR("Adj"), false);
-            break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
     }
@@ -161,10 +159,6 @@ bool oled_task_user(void) {
 }
 
 #endif
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _MOD, _FN, _ADJUST);
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
