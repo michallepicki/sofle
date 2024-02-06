@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 
 enum sofle_layers {
-    /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
     _MOD,
     _FN,
@@ -10,8 +9,6 @@ enum sofle_layers {
 
 enum custom_keycodes {
     KC_QWERT = SAFE_RANGE,
-    KC_PRVWD,
-    KC_NXTWD,
     KC_LSTRT,
     KC_LEND,
     KC_DLINE
@@ -52,11 +49,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  | Ins  | Pscr | Menu |      |      |                    |      | PWrd |  Up  | NWrd | DLine|      |
+ * | Tab  |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Esc  | LAt  | LCtl |LShift|      | Caps |-------.    ,-------|      | Left | Down | Rigth|  Del |      |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |Shift | Undo |  Cut | Copy | Paste|      |-------|    |-------|      | LStr |      | LEnd |      |Enter |
+ * | Esc  |      |      |      |      |      |-------.    ,-------|      | Left | Down |  Up  | Rigth|      |
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * |Shift |      |      |      |      |      |-------|    |-------|      |      |      |      |      |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT |Enter | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -66,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   _______, _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______,
 
-  _______, KC_INS,  KC_PSCR, KC_APP,  XXXXXXX, XXXXXXX,                       KC_PGUP, KC_PRVWD,KC_UP,   KC_NXTWD,KC_DLINE,_______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
 
-  _______, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, KC_CAPS,                       KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL,  _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
 
-  _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PASTE,XXXXXXX, _______,     _______, XXXXXXX, KC_LSTRT,XXXXXXX, KC_LEND, XXXXXXX, _______,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
 
                _______, _______, _______,   _______,    _______,     _______,    _______,   _______, _______, _______
 ),
@@ -82,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Tab  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | F12  |
  * |-   --+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * | Shift|  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT |Enter | RGUI | RCTL |
@@ -108,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |QK_BOOT|     |QWERTY|      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |MACWIN|      |      |      |-------.    ,-------|      | VOLDO| MUTE | VOLUP|      |      |
+ * |      |      |      |      |      |      |-------.    ,-------|      | VOLDO| MUTE | VOLUP|      |      |
  * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      | PREV | PLAY | NEXT |      |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -123,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   QK_BOOT, XXXXXXX, KC_QWERT,XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
-  XXXXXXX, XXXXXXX, CG_TOGG, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX,
 
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______,
 
@@ -144,15 +141,6 @@ static void render_logo(void) {
 }
 
 static void print_status_narrow(void) {
-    // Print current mode
-    if (keymap_config.swap_lctl_lgui) {
-        oled_write_ln_P(PSTR("MAC"), false);
-    } else {
-        oled_write_ln_P(PSTR("WIN"), false);
-    }
-
-    oled_write_P(PSTR("\n\n"), false);
-
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
             oled_write_ln_P(PSTR("QWRT"), false);
@@ -216,126 +204,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_QWERT:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_QWERTY);
-            }
-            return false;
-        case KC_PRVWD:
-            if (record->event.pressed) {
-                if (keymap_config.swap_lctl_lgui) {
-                    register_mods(mod_config(MOD_LALT));
-                    register_code(KC_LEFT);
-                } else {
-                    register_mods(mod_config(MOD_LCTL));
-                    register_code(KC_LEFT);
-                }
-            } else {
-                if (keymap_config.swap_lctl_lgui) {
-                    unregister_mods(mod_config(MOD_LALT));
-                    unregister_code(KC_LEFT);
-                } else {
-                    unregister_mods(mod_config(MOD_LCTL));
-                    unregister_code(KC_LEFT);
-                }
-            }
-            break;
-        case KC_NXTWD:
-             if (record->event.pressed) {
-                if (keymap_config.swap_lctl_lgui) {
-                    register_mods(mod_config(MOD_LALT));
-                    register_code(KC_RIGHT);
-                } else {
-                    register_mods(mod_config(MOD_LCTL));
-                    register_code(KC_RIGHT);
-                }
-            } else {
-                if (keymap_config.swap_lctl_lgui) {
-                    unregister_mods(mod_config(MOD_LALT));
-                    unregister_code(KC_RIGHT);
-                } else {
-                    unregister_mods(mod_config(MOD_LCTL));
-                    unregister_code(KC_RIGHT);
-                }
-            }
-            break;
-        case KC_LSTRT:
-            if (record->event.pressed) {
-                if (keymap_config.swap_lctl_lgui) {
-                     //CMD-arrow on Mac, but we have CTL and GUI swapped
-                    register_mods(mod_config(MOD_LCTL));
-                    register_code(KC_LEFT);
-                } else {
-                    register_code(KC_HOME);
-                }
-            } else {
-                if (keymap_config.swap_lctl_lgui) {
-                    unregister_mods(mod_config(MOD_LCTL));
-                    unregister_code(KC_LEFT);
-                } else {
-                    unregister_code(KC_HOME);
-                }
-            }
-            break;
-        case KC_LEND:
-            if (record->event.pressed) {
-                if (keymap_config.swap_lctl_lgui) {
-                    //CMD-arrow on Mac, but we have CTL and GUI swapped
-                    register_mods(mod_config(MOD_LCTL));
-                    register_code(KC_RIGHT);
-                } else {
-                    register_code(KC_END);
-                }
-            } else {
-                if (keymap_config.swap_lctl_lgui) {
-                    unregister_mods(mod_config(MOD_LCTL));
-                    unregister_code(KC_RIGHT);
-                } else {
-                    unregister_code(KC_END);
-                }
-            }
-            break;
-        case KC_DLINE:
-            if (record->event.pressed) {
-                register_mods(mod_config(MOD_LCTL));
-                register_code(KC_BSPC);
-            } else {
-                unregister_mods(mod_config(MOD_LCTL));
-                unregister_code(KC_BSPC);
-            }
-            break;
-        case KC_COPY:
-            if (record->event.pressed) {
-                register_mods(mod_config(MOD_LCTL));
-                register_code(KC_C);
-            } else {
-                unregister_mods(mod_config(MOD_LCTL));
-                unregister_code(KC_C);
-            }
-            return false;
-        case KC_PASTE:
-            if (record->event.pressed) {
-                register_mods(mod_config(MOD_LCTL));
-                register_code(KC_V);
-            } else {
-                unregister_mods(mod_config(MOD_LCTL));
-                unregister_code(KC_V);
-            }
-            return false;
-        case KC_CUT:
-            if (record->event.pressed) {
-                register_mods(mod_config(MOD_LCTL));
-                register_code(KC_X);
-            } else {
-                unregister_mods(mod_config(MOD_LCTL));
-                unregister_code(KC_X);
-            }
-            return false;
-            break;
-        case KC_UNDO:
-            if (record->event.pressed) {
-                register_mods(mod_config(MOD_LCTL));
-                register_code(KC_Z);
-            } else {
-                unregister_mods(mod_config(MOD_LCTL));
-                unregister_code(KC_Z);
             }
             return false;
     }
