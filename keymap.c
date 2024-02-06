@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT | App  | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
- *            `----------------------------------'           '------''---------------------------'
+ *            `-----------------------------------'           '------''---------------------------'
  */
 
 [_QWERTY] = LAYOUT(
@@ -42,18 +42,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* MOD
- * ,----------------------------------------.                    ,-----------------------------------------.
+ * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      | Del  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  |MouseL|MouseU|MouseD|MouseR|      |-------.    ,-------|      | Left | Down |  Up  | Rigth|      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick-|    |RClick-|      | Home | PgDn | PgUp | End  |RShift|
+ * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick |    |RClick |      | Home | PgDn | PgUp | End  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            | LCTL |      | LGUI | LALT | /LClick /       \ MOD  \  | RALT | App  | RGUI | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
- *            `----------------------------------'           '------''---------------------------'
+ *            `-----------------------------------'           '------''---------------------------'
  */
 [_MOD] = LAYOUT(
 
@@ -73,14 +73,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |QWERTY|      |      |      |      |                    |      |      |      |      |      | F12  |
- * |-   --+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | CAPS |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |PrtScn|ScrLk |Pause |Insert|      |-------|    |-------|      |      |      |      |      |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *            |      |  FN  |      |      | /       /       \      \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
- *            `----------------------------------'           '------''---------------------------'
+ *            `-----------------------------------'           '------''---------------------------'
  */
 [_FN] = LAYOUT(
 
@@ -98,23 +98,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_ENABLE
 
-static void render_logo(void) {
-    static const char PROGMEM qmk_logo[] = {
-        0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
-        0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,
-        0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
-    };
-
-    oled_write_P(qmk_logo, false);
-}
-
 static void print_status_narrow(void) {
     switch (get_highest_layer(default_layer_state)) {
         case _QWERTY:
             oled_write_ln_P(PSTR("QWRT"), false);
             break;
         default:
-            oled_write_P(PSTR("Undef"), false);
+            oled_write_ln_P(PSTR("Undef"), false);
     }
 
     oled_write_P(PSTR("\n\n"), false);
@@ -122,13 +112,13 @@ static void print_status_narrow(void) {
     // Print current layer
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
-            oled_write_P(PSTR("Base"), false);
+            oled_write_ln_P(PSTR("Base"), false);
             break;
         case _MOD:
-            oled_write_P(PSTR("Mod"), false);
+            oled_write_ln_P(PSTR("Mod"), false);
             break;
         case _FN:
-            oled_write_P(PSTR("Fn"), false);
+            oled_write_ln_P(PSTR("Fn"), false);
             break;
         default:
             oled_write_ln_P(PSTR("Undef"), false);
@@ -138,7 +128,10 @@ static void print_status_narrow(void) {
 
     led_t led_usb_state = host_keyboard_led_state();
     if (led_usb_state.caps_lock) {
-      oled_write_ln_P(PSTR("CPSLK"), true);
+        oled_write_ln_P(PSTR("CPSLK"), true);
+    } else {
+        // we need to write an empty line to clear CPSLK
+        oled_write_ln_P(PSTR(""), false);
     }
 }
 
@@ -152,8 +145,6 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
         print_status_narrow();
-    } else {
-        render_logo();
     }
     return false;
 }
