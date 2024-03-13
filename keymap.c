@@ -15,57 +15,57 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  | Bspc |
+ * |  `~  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  -_  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |      |
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  =+  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |Enter |
- * |------+------+------+------+------+------|  MUTE |    |       |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * | ESC  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |  ;:  |  '"  |
+ * |------+------+------+------+------+------|   \|  |    |   FN  |------+------+------+------+------+------|
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |  ,<  |  .>  |  /?  |Enter |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |  FN  | LGUI | LALT | /Space  /       \ MOD  \  | RALT | App  | RGUI | RCTL |
+ *            | LCTL |      |LSuper| LALT | /Space  /       \ MOD  \  | RALT |  [{  |  ]}  | Bspc |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
 
 [_QWERTY] = LAYOUT(
 
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
 
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX,
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_EQL,
 
-  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
 
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,     XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_BSLS,     MO(_FN), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
 
-               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    KC_SPC,      MO(_MOD),   KC_RALT,   KC_APP,  KC_RGUI, KC_RCTL
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    KC_SPC,      MO(_MOD),   KC_RALT,   KC_LBRC,  KC_RBRC, KC_BSPC
 ),
 
 /* MOD
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      | Del  |
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  |MouseL|MouseU|MouseD|MouseR|      |-------.    ,-------|      | Left | Down |  Up  | Rigth|      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick |    |RClick |      | Home | PgDn | PgUp | End  |RShift|
+ * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick |    |RClick |      | Home | PgDn | PgUp | End  |      |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |      | LGUI | LALT | /LClick /       \ MOD  \  | RALT | App  | RGUI | RCTL |
+ *            | LCTL |      | LGUI | LALT | /LClick /       \ MOD  \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
 [_MOD] = LAYOUT(
 
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
-  _______, KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R, XXXXXXX,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
+  KC_ESC,  KC_MS_L, KC_MS_U, KC_MS_D, KC_MS_R, XXXXXXX,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
 
-  _______, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, XXXXXXX, KC_BTN3,     KC_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
+  KC_LSFT, KC_WH_L, KC_WH_U, KC_WH_D, KC_WH_R, XXXXXXX, KC_BTN3,     KC_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX,
 
-               _______, XXXXXXX, _______,   _______,    KC_BTN1,     _______,    _______,   _______, _______, _______
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    KC_BTN1,     MO(_MOD),    XXXXXXX,   XXXXXXX, XXXXXXX, KC_DEL
 ),
 
 /* FN
@@ -76,9 +76,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | CAPS |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |      |PrtScn|ScrLk |Pause |Insert|      |-------|    |-------|      |      |      |      |      |      |
+ * |LShift|PrtScn|ScrLk |Pause |Insert|      |-------|    |---FN--|      |      |      |      |      |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            |      |  FN  |      |      | /       /       \      \  |      |      |      |      |
+ *            | LCTL |      |LSuper| LALT | /Space  /       \      \  | RALT |RSuper|  App | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -86,13 +86,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 
-  XXXXXXX, KC_QWERT,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12,
+  KC_TAB,  KC_QWERT,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12,
 
   KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
-  XXXXXXX, KC_PSCR, KC_SCRL, KC_PAUS, KC_INS, XXXXXXX, XXXXXXX,     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  KC_LSFT, KC_PSCR, KC_SCRL, KC_PAUS, KC_INS, XXXXXXX, XXXXXXX,      MO(_FN), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
 
-               XXXXXXX, _______, XXXXXXX,   XXXXXXX,    XXXXXXX,     XXXXXXX,    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    KC_SPC,      XXXXXXX,    KC_RALT,   KC_RGUI, KC_APP,  KC_RCTL
 )
 };
 
@@ -151,6 +151,7 @@ bool oled_task_user(void) {
 
 #endif
 
+// todo: switching mouse speeds? macos remapping?
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_QWERT:
@@ -166,16 +167,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
+        switch (get_highest_layer(layer_state)) {
+            case _MOD:
+                if (clockwise) {
+                    tap_code16(LCTL(KC_TAB));
+                } else {
+                    tap_code16(LCTL(LSFT(KC_TAB)));
+                }
+                break;
+            default:
+                // _QWERTY
+                if (clockwise) {
+                    tap_code16(LCTL(KC_Z));
+                } else {
+                    tap_code16(LCTL(LSFT(KC_Z)));
+                }
         }
     } else if (index == 1) {
-        if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
-            tap_code(KC_PGUP);
+        switch (get_highest_layer(layer_state)) {
+            case _MOD:
+                if (clockwise) { // flipped on the right encoder
+                    tap_code16(LALT(LSFT(KC_TAB)));
+                } else {
+                    tap_code16(LALT(KC_TAB));
+                }
+                break;
+            default:
+                // _QWERTY
+                if (clockwise) { // flipped on the right encoder
+                    tap_code16(KC_VOLD);
+                } else {
+                    tap_code16(KC_VOLU);
+                }
         }
     }
     return false;
