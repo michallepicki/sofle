@@ -186,18 +186,18 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _MOD:
-                if (clockwise) { // flipped on the right encoder
-                    tap_code16(LALT(LSFT(KC_TAB)));
-                } else {
+                if (clockwise) {
                     tap_code16(LALT(KC_TAB));
+                } else {
+                    tap_code16(LALT(LSFT(KC_TAB)));
                 }
                 break;
             default:
                 // _QWERTY
-                if (clockwise) { // flipped on the right encoder
-                    tap_code16(KC_VOLD);
-                } else {
+                if (clockwise) {
                     tap_code16(KC_VOLU);
+                } else {
+                    tap_code16(KC_VOLD);
                 }
         }
     }
