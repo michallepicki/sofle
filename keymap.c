@@ -7,7 +7,15 @@ enum sofle_layers {
 };
 
 enum custom_keycodes {
-    KC_QWERT = QK_USER
+    EN_LL = QK_USER,
+    EN_LR,
+    EN_RL,
+    EN_RR,
+    MOD_EN_LL,
+    MOD_EN_LR,
+    MOD_EN_RL,
+    MOD_EN_RR,
+    KC_QWERT
 };
 
 
@@ -154,54 +162,43 @@ bool oled_task_user(void) {
 // todo: switching mouse speeds? macos remapping?
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case EN_LL:
+            if (record->event.pressed) { tap_code16(LCTL(LSFT(KC_Z))); }
+            return false;
+        case EN_LR:
+            if (record->event.pressed) { tap_code16(LCTL(KC_Z)); }
+            return false;
+        case EN_RL:
+            if (record->event.pressed) { tap_code16(KC_VOLD); }
+            return false;
+        case EN_RR:
+            if (record->event.pressed) { tap_code16(KC_VOLU); }
+            return false;
+        case MOD_EN_LL:
+            if (record->event.pressed) { tap_code16(LCTL(LSFT(KC_TAB))); }
+            return false;
+        case MOD_EN_LR:
+            if (record->event.pressed) { tap_code16(LCTL(KC_TAB)); }
+            return false;
+        case MOD_EN_RL:
+            if (record->event.pressed) { tap_code16(LALT(LSFT(KC_TAB))); }
+            return false;
+        case MOD_EN_RR:
+            if (record->event.pressed) { tap_code16(LALT(KC_TAB)); }
+            return false;
         case KC_QWERT:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
-            }
+            if (record->event.pressed) { set_single_persistent_default_layer(_QWERTY); }
             return false;
     }
     return true;
 }
 
-#ifdef ENCODER_ENABLE
+#ifdef ENCODER_MAP_ENABLE
 
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        switch (get_highest_layer(layer_state)) {
-            case _MOD:
-                if (clockwise) {
-                    tap_code16(LCTL(KC_TAB));
-                } else {
-                    tap_code16(LCTL(LSFT(KC_TAB)));
-                }
-                break;
-            default:
-                // _QWERTY
-                if (clockwise) {
-                    tap_code16(LCTL(KC_Z));
-                } else {
-                    tap_code16(LCTL(LSFT(KC_Z)));
-                }
-        }
-    } else if (index == 1) {
-        switch (get_highest_layer(layer_state)) {
-            case _MOD:
-                if (clockwise) {
-                    tap_code16(LALT(KC_TAB));
-                } else {
-                    tap_code16(LALT(LSFT(KC_TAB)));
-                }
-                break;
-            default:
-                // _QWERTY
-                if (clockwise) {
-                    tap_code16(KC_VOLU);
-                } else {
-                    tap_code16(KC_VOLD);
-                }
-        }
-    }
-    return false;
-}
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [_QWERTY] = { ENCODER_CCW_CW(EN_LL, EN_LR), ENCODER_CCW_CW(EN_RL, EN_RR) },
+    [_MOD]    = { ENCODER_CCW_CW(MOD_EN_LL, MOD_EN_LR), ENCODER_CCW_CW(MOD_EN_RL, MOD_EN_RR) },
+    [_FN]     = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX), ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
+};
 
 #endif
