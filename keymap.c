@@ -7,7 +7,7 @@ enum sofle_layers {
 };
 
 enum custom_keycodes {
-    KC_QWERT = SAFE_RANGE
+    KC_QWERT = QK_USER
 };
 
 
