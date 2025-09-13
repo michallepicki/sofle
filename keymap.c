@@ -2,8 +2,9 @@
 
 enum sofle_layers {
     _QWERTY,
+    _SYM,
     _MOV,
-    _FN
+    _FN,
 };
 
 enum custom_keycodes {
@@ -14,7 +15,7 @@ enum custom_keycodes {
     MOV_ENC_LL,
     MOV_ENC_LR,
     MOV_ENC_RL,
-    MOV_ENC_RR
+    MOV_ENC_RR,
 };
 
 
@@ -30,22 +31,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   \|  |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |  ,<  |  .>  |  /?  |  =+  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |  FN  |LSuper| LALT | /Space  /       \ MOV  \  | RALT |  [{  |  ]}  |  -_  |
- *            |      |      |      |      |/       /         \      \ |      |      |      |      |
+ *            | LCTL |  FN  |LSuper| LALT | /T:Space/       \ MOV  \  | RALT |  [{  |  ]}  |  -_  |
+ *            |      |      |      |      |/ H:SYM /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
 
 [_QWERTY] = LAYOUT(
 
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
 
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                          KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
 
-  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
 
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_BSLS,     XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_BSLS,          XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL,
 
-               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    KC_SPC,      MO(_MOV),   KC_RALT,   KC_LBRC,  KC_RBRC, KC_MINS
+               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    LT(_SYM, KC_SPC), MO(_MOV),   KC_RALT,   KC_LBRC,  KC_RBRC, KC_MINS
+),
+
+/*
+ * SYM
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |-------.    ,-------|      |      |      |      |  ;:  |  '"  |
+ * |------+------+------+------+------+------|   \|  |    |       |------+------+------+------+------+------|
+ * |LShift|      |      |      |      |      |-------|    |-------|      |      |  ,<  |  .>  |  /?  |  =+  |
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *            | LCTL |      |LSuper| LALT | /       /       \      \  | RALT |  [{  |  ]}  |  -_  |
+ *            |      |      |      |      |/       /         \      \ |      |      |      |      |
+ *            `-----------------------------------'           '------''---------------------------'
+ */
+
+[_SYM] = LAYOUT(
+
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, KC_QUOT,
+
+  KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSLS,     XXXXXXX, XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  KC_SLSH, KC_EQL,
+
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    XXXXXXX,     XXXXXXX,    KC_RALT,   KC_LBRC,  KC_RBRC, KC_MINS
 ),
 
 /* MOV
@@ -58,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick |    |RClick |      | Home | PgDn | PgUp | End  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |      |LSuper | LALT | /LClick /       \ MOV  \  |      |      |      |      |
+ *            | LCTL |      |LSuper | LALT | /LClick /       \      \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -72,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   KC_LSFT, MS_WHLL, MS_WHLU, MS_WHLD, MS_WHLR, XXXXXXX, MS_BTN3,     MS_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
 
-               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    MS_BTN1,     MO(_MOV),    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    MS_BTN1,     XXXXXXX,    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
 /* FN
@@ -85,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |LShift|PrtScn|ScrLk |Pause |Insert|      |-------|    |---  --|      |      |      |      |      |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |  FN  |LSuper| LALT | /Space  /       \      \  | RALT |RSuper|  App | RCTL |
+ *            | LCTL |      |LSuper| LALT | /Space  /       \      \  | RALT |RSuper|  App | RCTL |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -99,8 +129,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   KC_LSFT, KC_PSCR, KC_SCRL, KC_PAUS, KC_INS, XXXXXXX, XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
 
-               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    KC_SPC,      XXXXXXX,    KC_RALT,   KC_RGUI, KC_APP,  KC_RCTL
-)
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    KC_SPC,      XXXXXXX,    KC_RALT,   KC_RGUI, KC_APP,  KC_RCTL
+),
 };
 
 #ifdef OLED_ENABLE
@@ -110,6 +140,9 @@ static void print_status_narrow(void) {
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
             oled_write_ln_P(PSTR("Base"), false);
+            break;
+        case _SYM:
+            oled_write_ln_P(PSTR("Sym"), false);
             break;
         case _MOV:
             oled_write_ln_P(PSTR("Mov"), false);
@@ -182,9 +215,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ENCODER_MAP_ENABLE
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY] = { ENCODER_CCW_CW(ENC_LL, ENC_LR), ENCODER_CCW_CW(ENC_RL, ENC_RR) },
+    [_QWERTY] = { ENCODER_CCW_CW(ENC_LL, ENC_LR),         ENCODER_CCW_CW(ENC_RL, ENC_RR) },
+    [_SYM]    = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX),       ENCODER_CCW_CW(XXXXXXX, XXXXXXX) },
     [_MOV]    = { ENCODER_CCW_CW(MOV_ENC_LL, MOV_ENC_LR), ENCODER_CCW_CW(MOV_ENC_RL, MOV_ENC_RR) },
-    [_FN]     = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX), ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
+    [_FN]     = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX),       ENCODER_CCW_CW(XXXXXXX, XXXXXXX) },
 };
 
 #endif
