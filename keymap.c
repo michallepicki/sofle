@@ -2,7 +2,7 @@
 
 enum sofle_layers {
     _QWERTY,
-    _MOD,
+    _MOV,
     _FN
 };
 
@@ -11,10 +11,10 @@ enum custom_keycodes {
     EN_LR,
     EN_RL,
     EN_RR,
-    MOD_EN_LL,
-    MOD_EN_LR,
-    MOD_EN_RL,
-    MOD_EN_RR,
+    MOV_EN_LL,
+    MOV_EN_LR,
+    MOV_EN_RL,
+    MOV_EN_RR,
     KC_QWERT
 };
 
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   \|  |    |       |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |  ,<  |  .>  |  /?  |  =+  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |  FN  |LSuper| LALT | /Space  /       \ MOD  \  | RALT |  [{  |  ]}  |  -_  |
+ *            | LCTL |  FN  |LSuper| LALT | /Space  /       \ MOV  \  | RALT |  [{  |  ]}  |  -_  |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
@@ -44,12 +44,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                          KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
 
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_BSLS,     XXXXXX,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL,
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_BSLS,     XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL,
 
-               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    KC_SPC,      MO(_MOD),   KC_RALT,   KC_LBRC,  KC_RBRC, KC_MINS
+               KC_LCTL, MO(_FN), KC_LGUI,   KC_LALT,    KC_SPC,      MO(_MOV),   KC_RALT,   KC_LBRC,  KC_RBRC, KC_MINS
 ),
 
-/* MOD
+/* MOV
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      | Del  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -59,11 +59,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick |    |RClick |      | Home | PgDn | PgUp | End  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |      |LSuper | LALT | /LClick /       \ MOD  \  |      |      |      |      |
+ *            | LCTL |      |LSuper | LALT | /LClick /       \ MOV  \  |      |      |      |      |
  *            |      |      |      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
-[_MOD] = LAYOUT(
+[_MOV] = LAYOUT(
 
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
 
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   KC_LSFT, MS_WHLL, MS_WHLU, MS_WHLD, MS_WHLR, XXXXXXX, MS_BTN3,     MS_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
 
-               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    MS_BTN1,     MO(_MOD),    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    MS_BTN1,     MO(_MOV),    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
 /* FN
@@ -122,8 +122,8 @@ static void print_status_narrow(void) {
         case _QWERTY:
             oled_write_ln_P(PSTR("Base"), false);
             break;
-        case _MOD:
-            oled_write_ln_P(PSTR("Mod"), false);
+        case _MOV:
+            oled_write_ln_P(PSTR("Mov"), false);
             break;
         case _FN:
             oled_write_ln_P(PSTR("Fn"), false);
@@ -174,16 +174,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case EN_RR:
             if (record->event.pressed) { tap_code16(KC_VOLU); }
             return false;
-        case MOD_EN_LL:
+        case MOV_EN_LL:
             if (record->event.pressed) { tap_code16(LCTL(LSFT(KC_TAB))); }
             return false;
-        case MOD_EN_LR:
+        case MOV_EN_LR:
             if (record->event.pressed) { tap_code16(LCTL(KC_TAB)); }
             return false;
-        case MOD_EN_RL:
+        case MOV_EN_RL:
             if (record->event.pressed) { tap_code16(LALT(LSFT(KC_TAB))); }
             return false;
-        case MOD_EN_RR:
+        case MOV_EN_RR:
             if (record->event.pressed) { tap_code16(LALT(KC_TAB)); }
             return false;
         case KC_QWERT:
@@ -197,7 +197,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWERTY] = { ENCODER_CCW_CW(EN_LL, EN_LR), ENCODER_CCW_CW(EN_RL, EN_RR) },
-    [_MOD]    = { ENCODER_CCW_CW(MOD_EN_LL, MOD_EN_LR), ENCODER_CCW_CW(MOD_EN_RL, MOD_EN_RR) },
+    [_MOV]    = { ENCODER_CCW_CW(MOV_EN_LL, MOV_EN_LR), ENCODER_CCW_CW(MOV_EN_RL, MOV_EN_RR) },
     [_FN]     = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX), ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
 };
 
