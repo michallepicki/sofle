@@ -7,14 +7,14 @@ enum sofle_layers {
 };
 
 enum custom_keycodes {
-    EN_LL = QK_USER,
-    EN_LR,
-    EN_RL,
-    EN_RR,
-    MOV_EN_LL,
-    MOV_EN_LR,
-    MOV_EN_RL,
-    MOV_EN_RR,
+    ENC_LL = QK_USER,
+    ENC_LR,
+    ENC_RL,
+    ENC_RR,
+    MOV_ENC_LL,
+    MOV_ENC_LR,
+    MOV_ENC_RL,
+    MOV_ENC_RR,
     KC_QWERT
 };
 
@@ -162,28 +162,28 @@ bool oled_task_user(void) {
 // todo: switching mouse speeds? macos remapping?
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case EN_LL:
+        case ENC_LL:
             if (record->event.pressed) { tap_code16(LCTL(LSFT(KC_Z))); }
             return false;
-        case EN_LR:
+        case ENC_LR:
             if (record->event.pressed) { tap_code16(LCTL(KC_Z)); }
             return false;
-        case EN_RL:
+        case ENC_RL:
             if (record->event.pressed) { tap_code16(KC_VOLD); }
             return false;
-        case EN_RR:
+        case ENC_RR:
             if (record->event.pressed) { tap_code16(KC_VOLU); }
             return false;
-        case MOV_EN_LL:
+        case MOV_ENC_LL:
             if (record->event.pressed) { tap_code16(LCTL(LSFT(KC_TAB))); }
             return false;
-        case MOV_EN_LR:
+        case MOV_ENC_LR:
             if (record->event.pressed) { tap_code16(LCTL(KC_TAB)); }
             return false;
-        case MOV_EN_RL:
+        case MOV_ENC_RL:
             if (record->event.pressed) { tap_code16(LALT(LSFT(KC_TAB))); }
             return false;
-        case MOV_EN_RR:
+        case MOV_ENC_RR:
             if (record->event.pressed) { tap_code16(LALT(KC_TAB)); }
             return false;
         case KC_QWERT:
@@ -196,8 +196,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef ENCODER_MAP_ENABLE
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY] = { ENCODER_CCW_CW(EN_LL, EN_LR), ENCODER_CCW_CW(EN_RL, EN_RR) },
-    [_MOV]    = { ENCODER_CCW_CW(MOV_EN_LL, MOV_EN_LR), ENCODER_CCW_CW(MOV_EN_RL, MOV_EN_RR) },
+    [_QWERTY] = { ENCODER_CCW_CW(ENC_LL, ENC_LR), ENCODER_CCW_CW(ENC_RL, ENC_RR) },
+    [_MOV]    = { ENCODER_CCW_CW(MOV_ENC_LL, MOV_ENC_LR), ENCODER_CCW_CW(MOV_ENC_RL, MOV_ENC_RR) },
     [_FN]     = { ENCODER_CCW_CW(XXXXXXX, XXXXXXX), ENCODER_CCW_CW(XXXXXXX, XXXXXXX) }
 };
 
