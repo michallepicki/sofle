@@ -14,8 +14,7 @@ enum custom_keycodes {
     MOV_ENC_LL,
     MOV_ENC_LR,
     MOV_ENC_RL,
-    MOV_ENC_RR,
-    KC_QWERT
+    MOV_ENC_RR
 };
 
 
@@ -80,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |  F1  |  F2  |  F3  |  F4  |  F5  |                    |  F6  |  F7  |  F8  |  F9  | F10  | F11  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |QWERTY|      |      |      |      |                    |      |      |      |      |      | F12  |
+ * |      |      |      |      |      |      |                    |      |      |      |      |      | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | CAPS |      |      |      |      |      |-------.    ,-------|      |      |      |      |      |      |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
@@ -94,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 
-  KC_TAB,  KC_QWERT,XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12,
+  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12,
 
   KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
@@ -107,16 +106,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef OLED_ENABLE
 
 static void print_status_narrow(void) {
-    switch (get_highest_layer(default_layer_state)) {
-        case _QWERTY:
-            oled_write_ln_P(PSTR("QWRT"), false);
-            break;
-        default:
-            oled_write_ln_P(PSTR("Undef"), false);
-    }
-
-    oled_write_P(PSTR("\n\n"), false);
-
     // Print current layer
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
@@ -185,9 +174,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case MOV_ENC_RR:
             if (record->event.pressed) { tap_code16(LALT(KC_TAB)); }
-            return false;
-        case KC_QWERT:
-            if (record->event.pressed) { set_single_persistent_default_layer(_QWERTY); }
             return false;
     }
     return true;
