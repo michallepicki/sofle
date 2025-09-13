@@ -22,18 +22,18 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * QWERTY
- * ,-----------------------------------------.                    ,-----------------------------------------.
- * |  `~  |  1!  |  2@  |  3#  |  4$  |  5%  |                    |  6^  |  7&  |  8*  |  9(  |  0)  | Bspc |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |Enter |
- * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | ESC  |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |  ;:  |  '"  |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |  ,<  |  .>  |  /?  |RShift|
- * `-----------------------------------------/       /     \      \-----------------------------------------'
- *            | LCTL |  FN  |LSuper| LALT | /T:Space/       \ MOV  \  | RALT |RSuper|  App | RCTL |
- *            |      |      |      |      |/ H:SYM /         \      \ |      |      |      |      |
- *            `-----------------------------------'           '------''---------------------------'
+ * ,-----------------------------------------.                     ,-----------------------------------------.
+ * |  `~  |  1!  |  2@  |  3#  |  4$  |  5%  |                     |  6^  |  7&  |  8*  |  9(  |  0)  | Bspc |
+ * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                     |   Y  |   U  |   I  |   O  |   P  |Enter |
+ * |------+------+------+------+------+------|                     |------+------+------+------+------+------|
+ * | ESC  |   A  |   S  |   D  |   F  |   G  |                     |   H  |   J  |   K  |   L  |  ;:  |  '"  |
+ * |------+------+------+------+------+------|-------.     ,-------|------+------+------+------+------+------|
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |       |     |       |   N  |   M  |  ,<  |  .>  |  /?  |RShift|
+ * `-----------------------------------------/-------/     \-------\-----------------------------------------'
+ *            | LCTL |  FN  |LSuper| LALT | /T:Space/       \  MOV  \  | RALT |RSuper|  App | RCTL |
+ *            |      |      |      |      |/ H:SYM /         \       \ |      |      |      |      |
+ *            `-----------------------------------'           '-------''---------------------------'
  */
 
 [_QWERTY] = LAYOUT(
@@ -56,10 +56,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |  -_  |  =+  |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |  \|  |  [{  |  ]}  |  ;:  |  '"  |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LShift|      |      |      |      |      |-------|    |-------|      |      |  ,<  |  .>  |  /?  |RShift|
- * `-----------------------------------------/       /     \       \-----------------------------------------'
+ * |      |      |      |      |      |      |                    |      |  \|  |  [{  |  ]}  |  ;:  |  '"  |
+ * |------+------+------+------+------+------|-------.    ,-------|------+------+------+------+------+------|
+ * |LShift|      |      |      |      |      |       |    |       |      |      |  ,<  |  .>  |  /?  |RShift|
+ * `-----------------------------------------/-------/     \-------\----------------------------------------'
  *            | LCTL |      |LSuper| LALT | /HHHHHHH/       \       \  | RALT |RSuper|  App | RCTL |
  *            |      |      |      |      |/HHHHHHH/         \       \ |      |      |      |      |
  *            `---------------------------------- '           '------ ''---------------------------'
@@ -84,25 +84,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Tab  |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Esc  |MouseL|MouseU|MouseD|MouseR|      |-------.    ,-------|      | Left | Down |  Up  | Rigth|      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
+ * | Esc  |MouseL|MouseU|MouseD|MouseR|      |                    |      | Left | Down |  Up  | Rigth|      |
+ * |------+------+------+------+------+------|-------.    ,-------|------+------+------+------+------+------|
  * |Shift |ScrlL |ScrlUp|ScrlDn|ScrlR |      |MClick |    |RClick |      | Home | PgDn | PgUp | End  |RShift|
- * `-----------------------------------------/       /     \       \-----------------------------------------'
+ * `-----------------------------------------/-------/     \-------\----------------------------------------'
  *           | LCTL |      |LSuper | LALT | /LClick /       \HHHHHHH\  |      |      |      |      |
- *           |      |      |       |      |/       /         \HHHHHHH\|      |      |      |      |
- *            `-----------------------------------'          '- -----  ---------------------------'
+ *           |      |      |       |      |/       /         \HHHHHHH\ |      |      |      |      |
+ *           `------------------------------------'          '- -----  ---------------------------'
  */
 [_MOV] = LAYOUT(
 
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
 
-  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX,
+  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX,
 
-  KC_ESC,  MS_LEFT, MS_UP,   MS_DOWN, MS_RGHT, XXXXXXX,                       XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
+  KC_ESC,  MS_LEFT, MS_UP,   MS_DOWN, MS_RGHT, XXXXXXX,                        XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
 
-  KC_LSFT, MS_WHLL, MS_WHLU, MS_WHLD, MS_WHLR, XXXXXXX, MS_BTN3,     MS_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
+  KC_LSFT, MS_WHLL, MS_WHLU, MS_WHLD, MS_WHLR, XXXXXXX, MS_BTN3,      MS_BTN2, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_RSFT,
 
-               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    MS_BTN1,     XXXXXXX,    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    MS_BTN1,      XXXXXXX,    XXXXXXX,   XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
 /* FN
@@ -111,25 +111,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |      |      |      | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | CAPS |      |      |      |      |      |-------.    ,-------|      |PrtScn|ScrLk |Pause |Insert|      |
- * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * |LShift|      |      |      |      |      |-------|    |---  --|      |      |      |      |      |RShift|
- * `-----------------------------------------/       /     \      \-----------------------------------------'
+ * | CAPS |      |      |      |      |      |                    |      |PrtScn|ScrLk |Pause |Insert|      |
+ * |------+------+------+------+------+------|-------.    ,-------|------+------+------+------+------+------|
+ * |LShift|      |      |      |      |      |       |    |       |      |      |      |      |      |RShift|
+ * `-----------------------------------------/-------/     \-------\----------------------------------------'
  *            | LCTL |HHHHHH|LSuper| LALT | /Space  /       \      \  | RALT |RSuper|  App | RCTL |
  *            |      |HHHHHH|      |      |/       /         \      \ |      |      |      |      |
  *            `-----------------------------------'           '------''---------------------------'
  */
 [_FN] = LAYOUT(
 
-  XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                         KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+  XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                          KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
 
-  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12,
+  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_F12,
 
-  KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                       XXXXXXX, KC_PSCR, KC_SCRL, KC_PAUS, KC_INS, XXXXXXX,
+  KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, KC_PSCR, KC_SCRL, KC_PAUS, KC_INS, XXXXXXX,
 
   KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_RSFT,
 
-               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    KC_SPC,      XXXXXXX,    KC_RALT,   KC_RGUI, KC_APP,  KC_RCTL
+               KC_LCTL, XXXXXXX, KC_LGUI,   KC_LALT,    KC_SPC,       XXXXXXX,    KC_RALT,   KC_RGUI, KC_APP,  KC_RCTL
 ),
 };
 
