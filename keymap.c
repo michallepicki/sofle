@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.                    ,-----------------------------------------.
  * |      |      |      |      |      |      |                    |      |      |      |      |      | Del  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | Tab  |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * | Tab  |      |      |      |      |      |                    |      |      |MSAcl0|MSAcl1|MSAcl2|      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | Esc  |MouseL|MouseU|MouseD|MouseR|      |                    |      | Left | Down |  Up  | Rigth|      |
  * |------+------+------+------+------+------|-------.    ,-------|------+------+------+------+------+------|
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
 
-  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, MS_ACL1, MS_ACL2, XXXXXXX, XXXXXXX,
+  KC_TAB,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        XXXXXXX, XXXXXXX, MS_ACL0, MS_ACL1, MS_ACL2, XXXXXXX,
 
   KC_ESC,  MS_LEFT, MS_UP,   MS_DOWN, MS_RGHT, XXXXXXX,                        XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX,
 
